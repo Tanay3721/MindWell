@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/rectangle_background"
     tools:context=".Home">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="600dp"
         android:elevation="10dp"
         android:background="@drawable/rounded_background"
         android:layout_marginHorizontal="30dp"
@@ -25,7 +26,7 @@
             android:text="Q1"
             android:alpha="0.3"
             android:textStyle="bold"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginHorizontal="30dp"
             android:textSize="35dp">
         </TextView>
@@ -34,20 +35,47 @@
             android:id="@+id/questionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#054571"
+            android:textColor="@color/black"
             android:text="Do you do most of your shopping in"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="30dp"
-            android:textSize="30dp">
+            android:textSize="23dp">
         </TextView>
 
         <RadioGroup
             android:id="@+id/optionsRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:paddingHorizontal="25dp">
+
+            <RadioButton
+                android:button="@android:color/transparent"
+                android:textColor="@color/black"
+                android:paddingStart="20dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="YES"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/stroke_background">
+
+            </RadioButton>
+
+            <RadioButton
+                android:button="@android:color/transparent"
+                android:textColor="@color/white"
+                android:paddingStart="20dp"
+                android:layout_marginTop="20dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="NO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/option_button">
+
+            </RadioButton>
 
         </RadioGroup>
 
@@ -56,13 +84,15 @@
             android:layout_height="match_parent">
 
             <Button
-                android:layout_margin="30dp"
                 android:id="@+id/submitButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/rounded_button"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_background"
                 android:backgroundTint="#2196F3"
                 android:elevation="4dp"
                 android:text="Submit"

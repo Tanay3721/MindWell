@@ -49,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
         LoginPage();
         SignIn();
         AutoLogin();
-
-
-
     }
 
     private void registerNewUser()

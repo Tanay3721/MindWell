@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.res.AssetManager;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -43,9 +47,39 @@ public class Home extends AppCompatActivity {
 
         options.setOnCheckedChangeListener((group, checkedId) -> {
             RadioButton radioButton = findViewById(checkedId);
+            radioButton.setTextColor(Color.WHITE);
+            radioButton.setBackgroundResource(R.drawable.option_button);
+
             currentSelectedOption = radioButton.getText().toString();
             currentOptionIndex = checkedId;
         });
+
+        final RadioButton[] previousCheckedRadioButton = {null}; // Initialize as null initially
+
+        options.setOnCheckedChangeListener((group, checkedId) -> {
+            RadioButton newCheckedRadioButton = findViewById(checkedId);
+
+            if (previousCheckedRadioButton[0] != null) {
+                // A previously checked RadioButton exists
+                if (previousCheckedRadioButton[0] != newCheckedRadioButton) {
+                    // The new RadioButton is different from the previously checked one,
+                    // so the previous one is being unchecked.
+                    previousCheckedRadioButton[0].setTextColor(Color.BLACK);
+                    previousCheckedRadioButton[0].setBackgroundResource(R.drawable.stroke_background);
+                }
+            }
+
+            // Update the reference to the newly checked RadioButton
+            previousCheckedRadioButton[0] = newCheckedRadioButton;
+
+            // Perform actions for the newly checked RadioButton
+            newCheckedRadioButton.setTextColor(Color.WHITE);
+            newCheckedRadioButton.setBackgroundResource(R.drawable.option_button);
+
+            currentSelectedOption = newCheckedRadioButton.getText().toString();
+            currentOptionIndex = checkedId;
+        });
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +130,28 @@ public class Home extends AppCompatActivity {
                 RadioButton radioButton = new RadioButton(this);
                 JSONObject option1Object = questionObject.getJSONObject("option"+i);
                 radioButton.setText(option1Object.getString("text"));
-                radioButton.setTextSize(30);
+                radioButton.setTextColor(Color.BLACK);
+                radioButton.setBackgroundResource(R.drawable.stroke_background);
+                radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                radioButton.setPaddingRelative(20,0,0,0);
+                radioButton.setTypeface(null, Typeface.BOLD);
+                radioButton.setButtonDrawable(android.R.color.transparent);
+                radioButton.setTextSize(20);
+
+                int marginTopInDp = 20;
+                float scale = getResources().getDisplayMetrics().density;
+                int marginTopInPixels = (int) (marginTopInDp * scale + 0.5f);
+                int desiredHeightInDp = 50;
+                int desiredHeightInPixels = (int) (desiredHeightInDp * scale + 0.5f);
+                RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(
+                        RadioGroup.LayoutParams.MATCH_PARENT,
+                        desiredHeightInPixels
+
+                );
+
+                layoutParams.setMargins(0, marginTopInPixels, 0, 0);
+
+                radioButton.setLayoutParams(layoutParams);
                 radioButton.setId(i);
                 options.addView(radioButton);
             }

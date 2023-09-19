@@ -3,6 +3,7 @@ package com.example.mindwell;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,6 +36,7 @@ public class Login extends AppCompatActivity {
         signin = findViewById(R.id.signin);
         emailTextView = findViewById(R.id.login_email);
         passwordTextView =findViewById(R.id.login_password);
+        progressBar = findViewById(R.id.Progressbar);
         login = findViewById(R.id.logsub);
         mAuth = FirebaseAuth.getInstance();
 
@@ -76,6 +78,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("NotConstructor")
     private void Login()
     {
         login.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +107,7 @@ public class Login extends AppCompatActivity {
 
     private void ProfilePage()
     {
-        Intent init = new Intent(getApplicationContext(),MainActivity.class);
+        Intent init = new Intent(getApplicationContext(),Home.class);
         startActivity(init);
         finish();
     }

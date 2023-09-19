@@ -48,12 +48,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/sign_in_full_name"
-                android:textSize="15dp"
-                android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textSize="15dp"
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -68,12 +69,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/sign_in_email"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -87,12 +89,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/sign_in_pass"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
 

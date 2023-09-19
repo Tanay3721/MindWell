@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void ProfilePage()
     {
-        Intent init = new Intent(getApplicationContext(),Login.class);
+        Intent init = new Intent(getApplicationContext(),Home.class);
         startActivity(init);
         finish();
     }

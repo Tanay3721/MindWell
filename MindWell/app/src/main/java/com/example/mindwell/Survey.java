@@ -90,7 +90,6 @@ public class Survey extends AppCompatActivity {
                 else
                 {
                     currentScore += getCurrentScore(questionNumber,currentOptionIndex);
-                    Toast.makeText(Survey.this, "" + currentScore, Toast.LENGTH_SHORT).show();
                     questionNumber++;
                     getCurrentQuestion(questionNumber);
                 }

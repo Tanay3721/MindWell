@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,7 +22,7 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-public class Home extends AppCompatActivity {
+public class Survey extends AppCompatActivity {
 
     TextView question,questionNumberText;
     RadioGroup options;
@@ -35,7 +34,7 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_survey);
 
         questionNumberText = findViewById(R.id.currentQuestionText);
         question = findViewById(R.id.questionTextView);
@@ -86,12 +85,12 @@ public class Home extends AppCompatActivity {
             public void onClick(View v) {
                 if(TextUtils.isEmpty(currentSelectedOption))
                 {
-                    Toast.makeText(Home.this, "please Select Option", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Survey.this, "please Select Option", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     currentScore += getCurrentScore(questionNumber,currentOptionIndex);
-                    Toast.makeText(Home.this, "" + currentScore, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Survey.this, "" + currentScore, Toast.LENGTH_SHORT).show();
                     questionNumber++;
                     getCurrentQuestion(questionNumber);
                 }
@@ -136,12 +135,12 @@ public class Home extends AppCompatActivity {
                 radioButton.setPaddingRelative(20,0,0,0);
                 radioButton.setTypeface(null, Typeface.BOLD);
                 radioButton.setButtonDrawable(android.R.color.transparent);
-                radioButton.setTextSize(20);
+                radioButton.setTextSize(18);
 
-                int marginTopInDp = 20;
+                int marginTopInDp = 18;
                 float scale = getResources().getDisplayMetrics().density;
                 int marginTopInPixels = (int) (marginTopInDp * scale + 0.5f);
-                int desiredHeightInDp = 50;
+                int desiredHeightInDp = 40;
                 int desiredHeightInPixels = (int) (desiredHeightInDp * scale + 0.5f);
                 RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(
                         RadioGroup.LayoutParams.MATCH_PARENT,

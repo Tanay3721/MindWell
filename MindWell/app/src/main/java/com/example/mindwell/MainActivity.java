@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void ProfilePage()
     {
-        Intent init = new Intent(getApplicationContext(),Home.class);
+        Intent init = new Intent(getApplicationContext(), Survey.class);
         startActivity(init);
         finish();
     }

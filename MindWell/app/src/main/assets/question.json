@@ -1,42 +1,142 @@
 [
   {
-    "question": "This is first question",
-    "totalOptions": 2,
+    "question": "When was the last time you were really happy?",
+    "totalOptions": 5,
     "option1": {
-      "text": "Yes",
-      "score": 1
+      "text": "Few days ago",
+      "score": 5
     },
     "option2": {
-      "text": "No",
+      "text": "Few weeks ago",
+      "score": 4
+    },
+    "option3": {
+      "text": "Few months ago",
+      "score": 3
+    },
+    "option4": {
+      "text": "Few years ago",
       "score": 2
+    },
+    "option5": {
+      "text": "I don't remember",
+      "score": 1
     }
   },
   {
-    "question": "This is second question",
-    "totalOptions": 3,
+    "question": "Do you often experience sudden, intense feelings of anxiety or panic?",
+    "totalOptions": 5,
     "option1": {
-      "text": "Yes",
+      "text": "Never",
+      "score": 5
+    },
+    "option2": {
+      "text": "Rarely",
+      "score": 4
+    },
+    "option3": {
+      "text": "Sometimes",
+      "score": 3
+    },
+    "option4": {
+      "text": "Often",
+      "score": 2
+    },
+    "option5": {
+      "text": "Always",
+      "score": 1
+    }
+  },
+  {
+    "question": "How often have you felt persistently sad or down in the past two weeks?",
+    "totalOptions": 5,
+    "option1": {
+      "text": "Never",
+      "score": 5
+    },
+    "option2": {
+      "text": "Rarely",
+      "score": 4
+    },
+    "option3": {
+      "text": "Sometimes",
+      "score": 3
+    },
+    "option4": {
+      "text": "Often",
+      "score": 2
+    },
+    "option5": {
+      "text": "Always",
+      "score": 1
+    }
+  },
+  {
+    "question": "Have you noticed changes in your sleeping patterns recently?",
+    "totalOptions": 5,
+    "option1": {
+      "text": " Not at all",
+      "score": 5
+    },
+    "option2": {
+      "text": "Slightly",
+      "score": 4
+    },
+    "option3": {
+      "text": "Moderately",
+      "score": 3
+    },
+    "option4": {
+      "text": "Significantly",
+      "score": 2
+    },
+    "option5": {
+      "text": "Extremely",
+      "score": 1
+    }
+  },
+  {
+    "question": "How many hours do you sleep per day?",
+    "totalOptions": 5,
+    "option1": {
+      "text": "Less than 4",
       "score": 1
     },
     "option2": {
-      "text": "No",
+      "text": "4-6",
       "score": 2
     },
     "option3": {
-      "text": "Other",
+      "text": "7-9",
       "score": 3
+    },
+    "option4": {
+      "text": "9+",
+      "score": 1
     }
   },
   {
-    "question": "This is third question",
-    "totalOptions": 2,
+    "question": "How often do you find it hard to concentrate or make decisions?",
+    "totalOptions": 5,
     "option1": {
-      "text": "Yes",
-      "score": 1
+      "text": "Never",
+      "score": 5
     },
     "option2": {
-      "text": "No",
+      "text": "Rarely",
+      "score": 4
+    },
+    "option3": {
+      "text": "Sometimes",
+      "score": 3
+    },
+    "option4": {
+      "text": "Often",
       "score": 2
+    },
+    "option5": {
+      "text": "Always",
+      "score": 1
     }
   }
 ]

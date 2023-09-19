@@ -146,9 +146,13 @@ public class Survey extends AppCompatActivity {
                         RadioGroup.LayoutParams.MATCH_PARENT,
                         desiredHeightInPixels
                 );
+
                 layoutParams.setMargins(0, marginTopInPixels, 0, 0);
                 radioButton.setLayoutParams(layoutParams);
                 radioButton.setId(i);
+                Typeface customFont = Typeface.createFromAsset(getAssets(), "robotoregular.ttf");
+                radioButton.setTypeface(customFont);
+
                 options.addView(radioButton);
             }
 

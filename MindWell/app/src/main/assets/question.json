@@ -1,0 +1,42 @@
+[
+  {
+    "question": "This is first question",
+    "totalOptions": 2,
+    "option1": {
+      "text": "Yes",
+      "score": 1
+    },
+    "option2": {
+      "text": "No",
+      "score": 2
+    }
+  },
+  {
+    "question": "This is second question",
+    "totalOptions": 3,
+    "option1": {
+      "text": "Yes",
+      "score": 1
+    },
+    "option2": {
+      "text": "No",
+      "score": 2
+    },
+    "option3": {
+      "text": "Other",
+      "score": 3
+    }
+  },
+  {
+    "question": "This is third question",
+    "totalOptions": 2,
+    "option1": {
+      "text": "Yes",
+      "score": 1
+    },
+    "option2": {
+      "text": "No",
+      "score": 2
+    }
+  }
+]

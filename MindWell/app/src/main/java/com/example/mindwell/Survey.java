@@ -145,11 +145,8 @@ public class Survey extends AppCompatActivity {
                 RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(
                         RadioGroup.LayoutParams.MATCH_PARENT,
                         desiredHeightInPixels
-
                 );
-
                 layoutParams.setMargins(0, marginTopInPixels, 0, 0);
-
                 radioButton.setLayoutParams(layoutParams);
                 radioButton.setId(i);
                 options.addView(radioButton);

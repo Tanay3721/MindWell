@@ -50,7 +50,7 @@
   {
     "question": "How often have you felt persistently sad or down in the past two weeks?",
     "totalOptions": 5,
-    "option1": {
+    "option3": {
       "text": "Never",
       "score": 5
     },
@@ -58,11 +58,11 @@
       "text": "Rarely",
       "score": 4
     },
-    "option3": {
+    "option4": {
       "text": "Sometimes",
       "score": 3
     },
-    "option4": {
+    "option1": {
       "text": "Often",
       "score": 2
     },
@@ -74,11 +74,11 @@
   {
     "question": "Have you noticed changes in your sleeping patterns recently?",
     "totalOptions": 5,
-    "option1": {
+    "option5": {
       "text": " Not at all",
       "score": 5
     },
-    "option2": {
+    "option1": {
       "text": "Slightly",
       "score": 4
     },
@@ -86,11 +86,11 @@
       "text": "Moderately",
       "score": 3
     },
-    "option4": {
+    "option2": {
       "text": "Significantly",
       "score": 2
     },
-    "option5": {
+    "option4": {
       "text": "Extremely",
       "score": 1
     }
@@ -102,11 +102,11 @@
       "text": "Less than 4 hours",
       "score": 1
     },
-    "option2": {
+    "option3": {
       "text": "4-6 hours",
       "score": 3
     },
-    "option3": {
+    "option2": {
       "text": "7-9 hours",
       "score": 5
     },
@@ -118,15 +118,15 @@
   {
     "question": "How often do you find it hard to concentrate or make decisions?",
     "totalOptions": 5,
-    "option1": {
+    "option3": {
       "text": "Never",
       "score": 5
     },
-    "option2": {
+    "option1": {
       "text": "Rarely",
       "score": 4
     },
-    "option3": {
+    "option2": {
       "text": "Sometimes",
       "score": 3
     },
@@ -142,23 +142,23 @@
   {
     "question": "Have you experienced a loss of interest or pleasure in activities you once enjoyed?",
     "totalOptions": 5,
-    "option1": {
+    "option4": {
       "text": "Never",
       "score": 5
     },
-    "option2": {
+    "option5": {
       "text": "Rarely",
       "score": 4
     },
-    "option3": {
+    "option1": {
       "text": "Sometimes",
       "score": 3
     },
-    "option4": {
+    "option2": {
       "text": "Often",
       "score": 2
     },
-    "option5": {
+    "option3": {
       "text": "Always",
       "score": 1
     }
@@ -166,11 +166,11 @@
   {
     "question": "How would you rate your overall mental well-being at this moment?",
     "totalOptions": 4,
-    "option1": {
+    "option2": {
       "text": "Excellent",
       "score": 5
     },
-    "option2": {
+    "option4": {
       "text": "Good",
       "score": 4
     },
@@ -178,7 +178,7 @@
       "text": "Fair",
       "score": 3
     },
-    "option4": {
+    "option1": {
       "text": "Poor",
       "score": 2
     }
@@ -191,7 +191,7 @@
       "score": 5
     },
     "option2": {
-      "text": "Confortable",
+      "text": "Comfortable",
       "score": 4
     },
     "option3": {
@@ -214,11 +214,11 @@
       "text": "Very satisfied",
       "score": 5
     },
-    "option2": {
+    "option3": {
       "text": "Satisfied",
       "score": 4
     },
-    "option3": {
+    "option2": {
       "text": "Neutral",
       "score": 3
     },
@@ -234,7 +234,7 @@
   {
     "question": "Do you feel depressed or sad about your work?",
     "totalOptions": 4,
-    "option1": {
+    "option4": {
       "text": "Yes",
       "score": 1
     },
@@ -246,7 +246,7 @@
       "text": "Sometimes",
       "score": 4
     },
-    "option4": {
+    "option1": {
       "text": "Often",
       "score": 2
     }
@@ -254,7 +254,7 @@
   {
     "question": "How often do you feel positive about your life?",
     "totalOptions": 5,
-    "option1": {
+    "option3": {
       "text": "Never",
       "score": 1
     },
@@ -262,7 +262,7 @@
       "text": "Once in a while",
       "score": 2
     },
-    "option3": {
+    "option1": {
       "text": "About half the time",
       "score": 3
     },
@@ -278,7 +278,7 @@
   {
     "question": "When did you last get your mental health examination done?",
     "totalOptions": 4,
-    "option1": {
+    "option3": {
       "text": "A week ago",
       "score": 1
     },
@@ -286,7 +286,7 @@
       "text": "A month ago",
       "score": 2
     },
-    "option3": {
+    "option1": {
       "text": "A year ago",
       "score": 3
     },
@@ -310,7 +310,7 @@
   {
     "question": "Are you satisfied with the balance between work, personal life, and self-care in your daily routine?",
     "totalOptions": 5,
-    "option1": {
+    "option4": {
       "text": "Very satisfied",
       "score": 5
     },
@@ -322,11 +322,11 @@
       "text": "Neutral",
       "score": 3
     },
-    "option4": {
+    "option5": {
       "text": "Dissatisfied",
       "score": 2
     },
-    "option5": {
+    "option1": {
       "text": "Very dissatisfied",
       "score": 1
     }

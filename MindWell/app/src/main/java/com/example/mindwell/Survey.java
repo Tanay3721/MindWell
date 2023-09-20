@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -27,8 +29,10 @@ public class Survey extends AppCompatActivity {
     TextView question,questionNumberText;
     RadioGroup options;
     Button submit;
+    boolean isLastQuestion = false;
+    TextInputLayout lastQuestion;
     String question_text = "",jsonFile,currentSelectedOption;
-    int totalOptions,currentOptionIndex,questionNumber=0,currentScore;
+    int totalOptions,currentOptionIndex,questionNumber=0,currentScore,totalQuestion=30;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,6 +44,7 @@ public class Survey extends AppCompatActivity {
         question = findViewById(R.id.questionTextView);
         options = findViewById(R.id.optionsRadioGroup);
         submit = findViewById(R.id.submitButton);
+        lastQuestion = findViewById(R.id.lastQuestion);
 
         ReadJsonFile();
         getCurrentQuestion(questionNumber);
@@ -83,6 +88,11 @@ public class Survey extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(isLastQuestion == true)
+                {
+                    Toast.makeText(Survey.this, "Completed", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if(TextUtils.isEmpty(currentSelectedOption))
                 {
                     Toast.makeText(Survey.this, "please Select Option", Toast.LENGTH_SHORT).show();
@@ -113,51 +123,61 @@ public class Survey extends AppCompatActivity {
 
     void  getCurrentQuestion(int index)
     {
-        try {
-            questionNumberText.setText("Q"+(index+1));
-            // If your JSON contains an array
-            currentSelectedOption=null;
+        if(questionNumber >= totalQuestion)
+        {
+            questionNumberText.setText("Q" + (index + 1));
             options.removeAllViews();
-            JSONArray jsonArray = new JSONArray(jsonFile);
-            JSONObject questionObject = jsonArray.getJSONObject(index);
-            question.setText(questionObject.getString("question"));
-            totalOptions = questionObject.getInt("totalOptions");
+            question.setText("Do you like to share something..");
+            lastQuestion.setVisibility(View.VISIBLE);
+            isLastQuestion = true;
+        }
+        else {
+            try {
+                questionNumberText.setText("Q" + (index + 1));
+                // If your JSON contains an array
+                currentSelectedOption = null;
+                options.removeAllViews();
+                JSONArray jsonArray = new JSONArray(jsonFile);
+                totalQuestion = jsonArray.length();
+                JSONObject questionObject = jsonArray.getJSONObject(index);
+                question.setText(questionObject.getString("question"));
+                totalOptions = questionObject.getInt("totalOptions");
 
-            for (int i=1;i<=totalOptions;i++)
-            {
-                RadioButton radioButton = new RadioButton(this);
-                JSONObject option1Object = questionObject.getJSONObject("option"+i);
-                radioButton.setText(option1Object.getString("text"));
-                radioButton.setTextColor(Color.BLACK);
-                radioButton.setBackgroundResource(R.drawable.stroke_background);
-                radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-                radioButton.setPaddingRelative(20,0,0,0);
-                radioButton.setTypeface(null, Typeface.BOLD);
-                radioButton.setButtonDrawable(android.R.color.transparent);
-                radioButton.setTextSize(18);
+                for (int i = 1; i <= totalOptions; i++) {
+                    RadioButton radioButton = new RadioButton(this);
+                    JSONObject option1Object = questionObject.getJSONObject("option" + i);
+                    radioButton.setText(option1Object.getString("text"));
+                    radioButton.setTextColor(Color.BLACK);
+                    radioButton.setBackgroundResource(R.drawable.stroke_background);
+                    radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                    radioButton.setPaddingRelative(20, 0, 0, 0);
+                    radioButton.setTypeface(null, Typeface.BOLD);
+                    radioButton.setButtonDrawable(android.R.color.transparent);
+                    radioButton.setTextSize(18);
 
-                int marginTopInDp = 18;
-                float scale = getResources().getDisplayMetrics().density;
-                int marginTopInPixels = (int) (marginTopInDp * scale + 0.5f);
-                int desiredHeightInDp = 40;
-                int desiredHeightInPixels = (int) (desiredHeightInDp * scale + 0.5f);
-                RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(
-                        RadioGroup.LayoutParams.MATCH_PARENT,
-                        desiredHeightInPixels
-                );
+                    int marginTopInDp = 18;
+                    float scale = getResources().getDisplayMetrics().density;
+                    int marginTopInPixels = (int) (marginTopInDp * scale + 0.5f);
+                    int desiredHeightInDp = 40;
+                    int desiredHeightInPixels = (int) (desiredHeightInDp * scale + 0.5f);
+                    RadioGroup.LayoutParams layoutParams = new RadioGroup.LayoutParams(
+                            RadioGroup.LayoutParams.MATCH_PARENT,
+                            desiredHeightInPixels
+                    );
 
-                layoutParams.setMargins(0, marginTopInPixels, 0, 0);
-                radioButton.setLayoutParams(layoutParams);
-                radioButton.setId(i);
-                Typeface customFont = Typeface.createFromAsset(getAssets(), "robotoregular.ttf");
-                radioButton.setTypeface(customFont);
+                    layoutParams.setMargins(0, marginTopInPixels, 0, 0);
+                    radioButton.setLayoutParams(layoutParams);
+                    radioButton.setId(i);
+                    Typeface customFont = Typeface.createFromAsset(getAssets(), "robotoregular.ttf");
+                    radioButton.setTypeface(customFont);
 
-                options.addView(radioButton);
+                    options.addView(radioButton);
+                }
+
+                // Access individual options
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            // Access individual options
-        } catch (Exception e){
-            e.printStackTrace();
         }
     }
 

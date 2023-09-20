@@ -1,8 +1,10 @@
 package com.example.mindwell;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -16,13 +18,20 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.util.HashMap;
 
 public class Survey extends AppCompatActivity {
 
@@ -33,6 +42,8 @@ public class Survey extends AppCompatActivity {
     TextInputLayout lastQuestion;
     String question_text = "",jsonFile,currentSelectedOption;
     int totalOptions,currentOptionIndex,questionNumber=0,currentScore,totalQuestion=30;
+    FirebaseAuth mAuth;
+    DatabaseReference ref;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -45,6 +56,9 @@ public class Survey extends AppCompatActivity {
         options = findViewById(R.id.optionsRadioGroup);
         submit = findViewById(R.id.submitButton);
         lastQuestion = findViewById(R.id.lastQuestion);
+
+        mAuth = FirebaseAuth.getInstance();
+        ref = FirebaseDatabase.getInstance().getReference();
 
         ReadJsonFile();
         getCurrentQuestion(questionNumber);
@@ -90,7 +104,26 @@ public class Survey extends AppCompatActivity {
             public void onClick(View v) {
                 if(isLastQuestion == true)
                 {
-                    Toast.makeText(Survey.this, "Completed", Toast.LENGTH_SHORT).show();
+                    LocalDate currentDate = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        currentDate = LocalDate.now();
+                    }
+                    HashMap<String, String> data = new HashMap<>();
+                    data.put("Score",""+currentScore);
+                    data.put("Date","" +currentDate);
+                    ref.child("Data").child(mAuth.getCurrentUser().getUid()).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful())
+                            {
+                                HomeActivity();
+                            }
+                            else
+                            {
+                                Toast.makeText(Survey.this, "Error", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                     return;
                 }
                 if(TextUtils.isEmpty(currentSelectedOption))
@@ -200,5 +233,11 @@ public class Survey extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void HomeActivity()
+    {
+        Intent intent = new Intent(getApplicationContext(), Home.class);
+        startActivity(intent);
     }
 }

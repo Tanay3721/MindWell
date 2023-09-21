@@ -142,6 +142,10 @@ public class Survey extends AppCompatActivity {
                 {
                     currentScore += getCurrentScore(questionNumber,currentOptionIndex);
                     questionNumber++;
+                    if(questionNumber==totalQuestion)
+                    {
+                        submit.setText("Submit");
+                    }
                     getCurrentQuestion(questionNumber);
                 }
             }

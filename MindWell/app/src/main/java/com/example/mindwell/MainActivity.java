@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase db;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         LoginPage();
         SignIn();
         AutoLogin();
+
+
+
     }
 
     private void registerNewUser()

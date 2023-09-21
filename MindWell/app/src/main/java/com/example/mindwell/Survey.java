@@ -108,15 +108,23 @@ public class Survey extends AppCompatActivity {
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                         currentDate = LocalDate.now();
                     }
-                    HashMap<String, String> data = new HashMap<>();
+                    HashMap<String, Object> data = new HashMap<>();
                     data.put("Score",""+currentScore);
                     data.put("Date","" +currentDate);
-                    ref.child("Data").child(mAuth.getCurrentUser().getUid()).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    ref.child("User").child(mAuth.getCurrentUser().getUid()).updateChildren(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful())
                             {
-                                HomeActivity();
+                                ref.child("Data").child(mAuth.getCurrentUser().getUid()).push().setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful())
+                                        {
+                                            HomeActivity();
+                                        }
+                                    }
+                                });
                             }
                             else
                             {

@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Home extends AppCompatActivity {
 
     CardView quiz;
-    TextView con_quiz;
+    TextView con_quiz,previousButton;
     FirebaseAuth mAuth;
     DatabaseReference db;
     String progress;
@@ -35,6 +35,7 @@ public class Home extends AppCompatActivity {
 
         quiz=findViewById(R.id.home_cardquiz);
         con_quiz=findViewById(R.id.home_continue);
+        previousButton = findViewById(R.id.home_prevrecd);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance().getReference();
         homeProgressBar = findViewById(R.id.home_progress);
@@ -56,12 +57,20 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Home.this,PScoreDisplay.class);
+                startActivity(i);
+            }
+        });
+
         CheckCurrentUser();
     }
 
     void CheckCurrentUser()
     {
-        db.child("Data").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        db.child("User").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1: snapshot.getChildren()) {

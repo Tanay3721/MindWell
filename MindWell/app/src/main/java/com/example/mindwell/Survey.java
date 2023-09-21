@@ -1,6 +1,7 @@
 package com.example.mindwell;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -11,6 +12,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -63,6 +65,17 @@ public class Survey extends AppCompatActivity {
         ReadJsonFile();
         getCurrentQuestion(questionNumber);
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(Survey.this);
+
+        // Inflate the custom dialog layout
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.activity_progress, null);
+
+        // Set the custom layout for the dialog
+        builder.setView(dialogView);
+
+        final AlertDialog customDialog = builder.create();
+
         options.setOnCheckedChangeListener((group, checkedId) -> {
             RadioButton radioButton = findViewById(checkedId);
             radioButton.setTextColor(Color.WHITE);
@@ -104,6 +117,7 @@ public class Survey extends AppCompatActivity {
             public void onClick(View v) {
                 if(isLastQuestion == true)
                 {
+                    customDialog.show();
                     LocalDate currentDate = null;
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                         currentDate = LocalDate.now();
@@ -121,13 +135,20 @@ public class Survey extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful())
                                         {
+                                            customDialog.dismiss();
                                             HomeActivity();
+                                        }
+                                        else
+                                        {
+                                            customDialog.dismiss();
+                                            Toast.makeText(Survey.this, "Error", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
                             }
                             else
                             {
+                                customDialog.dismiss();
                                 Toast.makeText(Survey.this, "Error", Toast.LENGTH_SHORT).show();
                             }
                         }

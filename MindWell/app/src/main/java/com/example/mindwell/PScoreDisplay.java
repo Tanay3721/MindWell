@@ -6,7 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,8 +25,9 @@ public class PScoreDisplay extends AppCompatActivity {
     RecyclerView recyclerView;
     PScoreAdapter myAdapter;
     FirebaseAuth mAuth;
-    DatabaseReference ref;
-
+    DatabaseReference ref,db;
+    ImageView pScoreBack;
+    TextView pScoreName;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,10 @@ public class PScoreDisplay extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance().getReference();
+        pScoreBack = findViewById(R.id.pscore_back);
+        pScoreName = findViewById(R.id.pscore_name);
+
         ref = FirebaseDatabase.getInstance().getReference().child("Data");
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setReverseLayout(true);
@@ -47,6 +56,37 @@ public class PScoreDisplay extends AppCompatActivity {
                     myAdapter = new PScoreAdapter(options,PScoreDisplay.this);
                     myAdapter.startListening();
                     recyclerView.setAdapter(myAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        pScoreBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent init = new Intent(getApplicationContext(), Home.class);
+                startActivity(init);
+                finish();
+            }
+        });
+
+        CheckCurrentUser();
+    }
+
+    void CheckCurrentUser()
+    {
+        db.child("User").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snapshot1: snapshot.getChildren()) {
+                    if(snapshot1.getKey().equals("Username"))
+                    {
+                        pScoreName.setText(snapshot1.getValue().toString());
+                    }
                 }
             }
 

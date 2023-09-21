@@ -20,13 +20,14 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Home extends AppCompatActivity {
 
-    CardView quiz;
+    CardView quiz,scoreCardView;
     TextView con_quiz,previousButton;
     FirebaseAuth mAuth;
     DatabaseReference db;
     String progress;
     ProgressBar homeProgressBar;
     TextView percentageValue;
+    boolean userFirstTime = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         quiz=findViewById(R.id.home_cardquiz);
+        scoreCardView = findViewById(R.id.home_card2);
         con_quiz=findViewById(R.id.home_continue);
         previousButton = findViewById(R.id.home_prevrecd);
         mAuth = FirebaseAuth.getInstance();
@@ -46,6 +48,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i=new Intent(Home.this,Survey.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -54,6 +57,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i=new Intent(Home.this,Survey.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -62,8 +66,20 @@ public class Home extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i=new Intent(Home.this,PScoreDisplay.class);
                 startActivity(i);
+                finish();
             }
         });
+
+        if(userFirstTime)
+        {
+            scoreCardView.setVisibility(View.GONE);
+            con_quiz.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            scoreCardView.setVisibility(View.VISIBLE);
+            con_quiz.setVisibility(View.GONE);
+        }
 
         CheckCurrentUser();
     }
@@ -76,9 +92,20 @@ public class Home extends AppCompatActivity {
                 for (DataSnapshot snapshot1: snapshot.getChildren()) {
                     if(snapshot1.getKey().equals("Score"))
                     {
+                        userFirstTime = false;
                         progress = snapshot1.getValue().toString();
                         homeProgressBar.setProgress(Integer.parseInt(progress));
                         percentageValue.setText(progress);
+                        if(userFirstTime)
+                        {
+                            scoreCardView.setVisibility(View.GONE);
+                            con_quiz.setVisibility(View.VISIBLE);
+                        }
+                        else
+                        {
+                            scoreCardView.setVisibility(View.VISIBLE);
+                            con_quiz.setVisibility(View.GONE);
+                        }
                     }
                 }
             }

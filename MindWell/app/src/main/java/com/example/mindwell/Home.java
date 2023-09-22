@@ -31,7 +31,7 @@ public class Home extends AppCompatActivity {
     DatabaseReference db;
     String progress;
     ProgressBar homeProgressBar;
-    TextView percentageValue,advice;
+    TextView percentageValue,advice,homeName,homeHealth;
     boolean userFirstTime = true;
 
     @Override
@@ -48,6 +48,8 @@ public class Home extends AppCompatActivity {
         homeProgressBar = findViewById(R.id.home_progress);
         percentageValue = findViewById(R.id.home_scoreper);
         advice=findViewById(R.id.home_advice);
+        homeName = findViewById(R.id.home_name);
+        homeHealth = findViewById(R.id.home_stage);
 
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,14 +100,18 @@ public class Home extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1: snapshot.getChildren()) {
+
+                    if(snapshot1.getKey().equals("Username"))
+                    {
+                        homeName.setText(snapshot1.getValue().toString());
+                    }
+
                     if(snapshot1.getKey().equals("Score"))
                     {
                         userFirstTime = false;
                         progress = snapshot1.getValue().toString();
                         homeProgressBar.setProgress(Integer.parseInt(progress));
                         Drawable progressDrawable = homeProgressBar.getProgressDrawable();
-
-
 
                         percentageValue.setText(progress);
                         if(userFirstTime)
@@ -123,6 +129,7 @@ public class Home extends AppCompatActivity {
 
                         if(score < 75 && score > 55)
                         {
+                            homeHealth.setText("Mental Health Stage: Normal");
                             if (progressDrawable instanceof LayerDrawable) {
                                 // Cast the progress drawable to a LayerDrawable
                                 LayerDrawable layerDrawable = (LayerDrawable) progressDrawable;
@@ -170,6 +177,7 @@ public class Home extends AppCompatActivity {
                         }
                         else if(score<55 && score>35)
                         {
+                            homeHealth.setText("Mental Health Stage: Intermediate");
                             if (progressDrawable instanceof LayerDrawable) {
                                 // Cast the progress drawable to a LayerDrawable
                                 LayerDrawable layerDrawable = (LayerDrawable) progressDrawable;
@@ -216,6 +224,7 @@ public class Home extends AppCompatActivity {
                         }
                         else
                         {
+                            homeHealth.setText("Mental Health Stage: Critical");
                             if (progressDrawable instanceof LayerDrawable) {
                                 // Cast the progress drawable to a LayerDrawable
                                 LayerDrawable layerDrawable = (LayerDrawable) progressDrawable;

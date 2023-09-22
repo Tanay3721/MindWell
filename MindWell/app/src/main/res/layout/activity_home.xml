@@ -211,11 +211,10 @@
 
                 <ScrollView
                     android:id="@+id/home_scroll"
-                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="130dp">
                     <TextView
                         android:id="@+id/home_advice"
                         android:paddingStart="15dp"
@@ -226,6 +225,16 @@
                         android:textSize="15dp"></TextView>
 
                 </ScrollView>
+
+                <TextView
+                    android:id="@+id/home_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View More"
+                    android:textAlignment="textEnd"
+                    android:paddingEnd="20dp"
+                    android:textColor="#0046a0"
+                    android:textSize="15dp"></TextView>
 
             </LinearLayout>
 

@@ -7,9 +7,6 @@
     android:background="@drawable/rectangle_background"
     tools:context=".Home">
 
-
-
-
     <LinearLayout
         android:id="@+id/home_linear1"
         android:layout_width="match_parent"

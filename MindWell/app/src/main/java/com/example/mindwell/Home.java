@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -98,6 +103,10 @@ public class Home extends AppCompatActivity {
                         userFirstTime = false;
                         progress = snapshot1.getValue().toString();
                         homeProgressBar.setProgress(Integer.parseInt(progress));
+                        Drawable progressDrawable = homeProgressBar.getProgressDrawable();
+
+
+
                         percentageValue.setText(progress);
                         if(userFirstTime)
                         {
@@ -112,16 +121,143 @@ public class Home extends AppCompatActivity {
 
                         int score=Integer.parseInt(percentageValue.getText().toString());
 
-                        if(score < 75 && score > 50)
+                        if(score < 75 && score > 55)
                         {
+                            if (progressDrawable instanceof LayerDrawable) {
+                                // Cast the progress drawable to a LayerDrawable
+                                LayerDrawable layerDrawable = (LayerDrawable) progressDrawable;
+
+                                // Find the item you want to change by its index (0 for the background, 1 for the progress)
+                                int progressItemIndex = 0;
+                                Drawable progressItem = layerDrawable.getDrawable(progressItemIndex);
+
+                                // Modify the color of the shape inside the progress item
+                                if (progressItem instanceof GradientDrawable) {
+                                    // Cast the Drawable to a GradientDrawable (assuming it's a shape)
+                                    GradientDrawable shape = (GradientDrawable) progressItem;
+
+                                    // Set the new color
+                                    shape.setStroke(3,Color.parseColor("#2fde2d")); // Change to your desired color
+                                }
+                                else
+                                {
+                                    Toast.makeText(Home.this, "not at all", Toast.LENGTH_SHORT).show();
+                                }
+
+                                int progressItemIndex_1 = 1;
+                                Drawable progressItem_1 = layerDrawable.getDrawable(progressItemIndex_1);
+                                ScaleDrawable scaleDrawable = (ScaleDrawable) progressItem_1;
+
+                                // Get the inner drawable
+                                Drawable innerDrawable = scaleDrawable.getDrawable();
+
+                                // If the inner drawable is a GradientDrawable, change its color
+                                if (innerDrawable instanceof GradientDrawable) {
+                                    GradientDrawable shape = (GradientDrawable) innerDrawable;
+                                    shape.setColor(Color.parseColor("#2fde2d")); // Change to your desired color
+                                }
+                                else
+                                {
+                                    Toast.makeText(Home.this, "", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else
+                            {
+                                Toast.makeText(Home.this, "not", Toast.LENGTH_SHORT).show();
+                            }
+
                             advice.setText("1.Regular Exercise: Aim for at least 30 minutes of moderate exercise most days of the week. \n 2.Balanced Diet:Eating a balanced diet with plenty of fruits, vegetables, whole grains, lean proteins.\n 3.Adequate Sleep: Aim for 7-9 hours of quality sleep per night.");
                         }
-                        else if(score<50 && score>25)
+                        else if(score<55 && score>35)
                         {
+                            if (progressDrawable instanceof LayerDrawable) {
+                                // Cast the progress drawable to a LayerDrawable
+                                LayerDrawable layerDrawable = (LayerDrawable) progressDrawable;
+
+                                // Find the item you want to change by its index (0 for the background, 1 for the progress)
+                                int progressItemIndex = 0;
+                                Drawable progressItem = layerDrawable.getDrawable(progressItemIndex);
+
+                                // Modify the color of the shape inside the progress item
+                                if (progressItem instanceof GradientDrawable) {
+                                    // Cast the Drawable to a GradientDrawable (assuming it's a shape)
+                                    GradientDrawable shape = (GradientDrawable) progressItem;
+
+                                    // Set the new color
+                                    shape.setStroke(3,Color.parseColor("#2d88de")); // Change to your desired color
+                                }
+                                else
+                                {
+                                    Toast.makeText(Home.this, "not at all", Toast.LENGTH_SHORT).show();
+                                }
+
+                                int progressItemIndex_1 = 1;
+                                Drawable progressItem_1 = layerDrawable.getDrawable(progressItemIndex_1);
+                                ScaleDrawable scaleDrawable = (ScaleDrawable) progressItem_1;
+
+                                // Get the inner drawable
+                                Drawable innerDrawable = scaleDrawable.getDrawable();
+
+                                // If the inner drawable is a GradientDrawable, change its color
+                                if (innerDrawable instanceof GradientDrawable) {
+                                    GradientDrawable shape = (GradientDrawable) innerDrawable;
+                                    shape.setColor(Color.parseColor("#2d88de")); // Change to your desired color
+                                }
+                                else
+                                {
+                                    Toast.makeText(Home.this, "", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else
+                            {
+                                Toast.makeText(Home.this, "not", Toast.LENGTH_SHORT).show();
+                            }
                             advice.setText("1.Therapy or Counseling: Consider regular sessions with a therapist or counselor. \n 2. Self-care: Doing yoga or meditation , adequate sleep , balanced diet \n 3. Avoid self-medication \n 4. Avoid drugs or alcohol \n 5. Soical support : Maintain a strong support network around yourself");
                         }
                         else
                         {
+                            if (progressDrawable instanceof LayerDrawable) {
+                                // Cast the progress drawable to a LayerDrawable
+                                LayerDrawable layerDrawable = (LayerDrawable) progressDrawable;
+
+                                // Find the item you want to change by its index (0 for the background, 1 for the progress)
+                                int progressItemIndex = 0;
+                                Drawable progressItem = layerDrawable.getDrawable(progressItemIndex);
+
+                                // Modify the color of the shape inside the progress item
+                                if (progressItem instanceof GradientDrawable) {
+                                    // Cast the Drawable to a GradientDrawable (assuming it's a shape)
+                                    GradientDrawable shape = (GradientDrawable) progressItem;
+
+                                    // Set the new color
+                                    shape.setStroke(3,Color.parseColor("#de2d2d")); // Change to your desired color
+                                }
+                                else
+                                {
+                                    Toast.makeText(Home.this, "not at all", Toast.LENGTH_SHORT).show();
+                                }
+
+                                int progressItemIndex_1 = 1;
+                                Drawable progressItem_1 = layerDrawable.getDrawable(progressItemIndex_1);
+                                ScaleDrawable scaleDrawable = (ScaleDrawable) progressItem_1;
+
+                                // Get the inner drawable
+                                Drawable innerDrawable = scaleDrawable.getDrawable();
+
+                                // If the inner drawable is a GradientDrawable, change its color
+                                if (innerDrawable instanceof GradientDrawable) {
+                                    GradientDrawable shape = (GradientDrawable) innerDrawable;
+                                    shape.setColor(Color.parseColor("#de2d2d")); // Change to your desired color
+                                }
+                                else
+                                {
+                                    Toast.makeText(Home.this, "", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else
+                            {
+                                Toast.makeText(Home.this, "not", Toast.LENGTH_SHORT).show();
+                            }
                             advice.setText("1.Immediate professional help \n 2. Hospitalization if Necessary \n 3.Avoid Alcohol and Substance Use \n 4. Maintain 24/7 Support Network \n 5.Safety Plan: Work with a mental health professional to create a safety plan");
                         }
                     }

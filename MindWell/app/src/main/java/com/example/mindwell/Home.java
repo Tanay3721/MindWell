@@ -26,7 +26,7 @@ public class Home extends AppCompatActivity {
     DatabaseReference db;
     String progress;
     ProgressBar homeProgressBar;
-    TextView percentageValue;
+    TextView percentageValue,advice;
     boolean userFirstTime = true;
 
     @Override
@@ -42,6 +42,7 @@ public class Home extends AppCompatActivity {
         db = FirebaseDatabase.getInstance().getReference();
         homeProgressBar = findViewById(R.id.home_progress);
         percentageValue = findViewById(R.id.home_scoreper);
+        advice=findViewById(R.id.home_advice);
 
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +82,8 @@ public class Home extends AppCompatActivity {
             con_quiz.setVisibility(View.GONE);
         }
 
+
+
         CheckCurrentUser();
     }
 
@@ -105,6 +108,21 @@ public class Home extends AppCompatActivity {
                         {
                             scoreCardView.setVisibility(View.VISIBLE);
                             con_quiz.setVisibility(View.GONE);
+                        }
+
+                        int score=Integer.parseInt(percentageValue.getText().toString());
+
+                        if(score < 75 && score > 50)
+                        {
+                            advice.setText("1.Regular Exercise: Aim for at least 30 minutes of moderate exercise most days of the week. \n 2.Balanced Diet:Eating a balanced diet with plenty of fruits, vegetables, whole grains, lean proteins.\n 3.Adequate Sleep: Aim for 7-9 hours of quality sleep per night.");
+                        }
+                        else if(score<50 && score>25)
+                        {
+                            advice.setText("1.Therapy or Counseling: Consider regular sessions with a therapist or counselor. \n 2. Self-care: Doing yoga or meditation , adequate sleep , balanced diet \n 3. Avoid self-medication \n 4. Avoid drugs or alcohol \n 5. Soical support : Maintain a strong support network around yourself");
+                        }
+                        else
+                        {
+                            advice.setText("1.Immediate professional help \n 2. Hospitalization if Necessary \n 3.Avoid Alcohol and Substance Use \n 4. Maintain 24/7 Support Network \n 5.Safety Plan: Work with a mental health professional to create a safety plan");
                         }
                     }
                 }

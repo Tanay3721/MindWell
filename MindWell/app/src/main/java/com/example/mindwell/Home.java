@@ -30,8 +30,9 @@ public class Home extends AppCompatActivity {
     FirebaseAuth mAuth;
     DatabaseReference db;
     String progress;
+    int stage;
     ProgressBar homeProgressBar;
-    TextView percentageValue,advice,homeName,homeHealth;
+    TextView percentageValue,advice,homeName,homeHealth,viewmore;
     boolean userFirstTime = true;
 
     @Override
@@ -40,6 +41,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         quiz=findViewById(R.id.home_cardquiz);
+        viewmore = findViewById(R.id.home_view);
         scoreCardView = findViewById(R.id.home_card2);
         con_quiz=findViewById(R.id.home_continue);
         previousButton = findViewById(R.id.home_prevrecd);
@@ -66,6 +68,15 @@ public class Home extends AppCompatActivity {
                 Intent i=new Intent(Home.this,Survey.class);
                 startActivity(i);
                 finish();
+            }
+        });
+
+        viewmore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent init = new Intent(getApplicationContext(), com.example.mindwell.advice.class);
+                init.putExtra("stage",""+stage);
+                startActivity(init);
             }
         });
 
@@ -129,6 +140,7 @@ public class Home extends AppCompatActivity {
 
                         if(score < 75 && score > 55)
                         {
+                            stage=1;
                             homeHealth.setText("Mental Health Stage: Normal");
                             if (progressDrawable instanceof LayerDrawable) {
                                 // Cast the progress drawable to a LayerDrawable
@@ -173,10 +185,11 @@ public class Home extends AppCompatActivity {
                                 Toast.makeText(Home.this, "not", Toast.LENGTH_SHORT).show();
                             }
 
-                            advice.setText("1.Regular Exercise: Aim for at least 30 minutes of moderate exercise most days of the week. \n 2.Balanced Diet:Eating a balanced diet with plenty of fruits, vegetables, whole grains, lean proteins.\n 3.Adequate Sleep: Aim for 7-9 hours of quality sleep per night.");
+                            advice.setText("1.Regular Exercise: Aim for at least 30 minutes of moderate exercise most days of the week. \n 2.Balanced Diet:Eating a balanced diet with plenty of fruits, vegetables, whole grains, lean proteins.");
                         }
                         else if(score<55 && score>35)
                         {
+                            stage=2;
                             homeHealth.setText("Mental Health Stage: Intermediate");
                             if (progressDrawable instanceof LayerDrawable) {
                                 // Cast the progress drawable to a LayerDrawable
@@ -220,10 +233,11 @@ public class Home extends AppCompatActivity {
                             {
                                 Toast.makeText(Home.this, "not", Toast.LENGTH_SHORT).show();
                             }
-                            advice.setText("1.Therapy or Counseling: Consider regular sessions with a therapist or counselor. \n 2. Self-care: Doing yoga or meditation , adequate sleep , balanced diet \n 3. Avoid self-medication \n 4. Avoid drugs or alcohol \n 5. Soical support : Maintain a strong support network around yourself");
+                            advice.setText("1.Therapy or Counseling: Consider regular sessions with a therapist or counselor. \n 2. Self-care: Doing yoga or meditation , adequate sleep , balanced diet ");
                         }
                         else
                         {
+                            stage=3;
                             homeHealth.setText("Mental Health Stage: Critical");
                             if (progressDrawable instanceof LayerDrawable) {
                                 // Cast the progress drawable to a LayerDrawable
@@ -267,7 +281,7 @@ public class Home extends AppCompatActivity {
                             {
                                 Toast.makeText(Home.this, "not", Toast.LENGTH_SHORT).show();
                             }
-                            advice.setText("1.Immediate professional help \n 2. Hospitalization if Necessary \n 3.Avoid Alcohol and Substance Use \n 4. Maintain 24/7 Support Network \n 5.Safety Plan: Work with a mental health professional to create a safety plan");
+                            advice.setText("1.Immediate professional help \n 2. Hospitalization if Necessary \n 3.Avoid Alcohol and Substance Use \n 4. Maintain 24/7 Support Network ");
                         }
                     }
                 }
